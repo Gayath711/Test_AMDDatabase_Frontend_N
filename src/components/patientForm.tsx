@@ -148,7 +148,7 @@ const DataFetchingComponent: React.FC = () => {
                         </Table>
                     </TableContainer>
                     <TableContainer component={Paper}>
-                        ]                        <Table aria-label="simple table">
+                        <Table aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Communication Notes</TableCell>
