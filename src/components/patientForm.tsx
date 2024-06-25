@@ -117,7 +117,6 @@ const DataFetchingComponent: React.FC = () => {
             {responseData.length > 0 && (
                 <div >
                     <TableContainer component={Paper}>
-                        Personal Details
                         <Table aria-label="simple table">
                             <TableHead>
                                 <TableRow>
@@ -149,8 +148,7 @@ const DataFetchingComponent: React.FC = () => {
                         </Table>
                     </TableContainer>
                     <TableContainer component={Paper}>
-                        clinical assessment
-                        <Table aria-label="simple table">
+                        ]                        <Table aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Communication Notes</TableCell>
