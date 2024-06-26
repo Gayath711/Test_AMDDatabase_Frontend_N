@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, TextField, Button, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@material-ui/core';
+import { Container, TextField, Button, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Grid } from '@material-ui/core';
 
 // Define an interface for the expected data structure
 interface MyData {
@@ -50,7 +50,6 @@ const DataFetchingComponent: React.FC = () => {
             });
             setResponseData(response.data);
             console.log(response.data)
-            console.log(responseData)
             setLoading(false);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -116,118 +115,90 @@ const DataFetchingComponent: React.FC = () => {
 
             {responseData.length > 0 && (
                 <div >
-                    <TableContainer component={Paper}>
-                        <Table aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell>Phone Number</TableCell>
-                                    <TableCell>Date of Birth</TableCell>
-                                    <TableCell>Address</TableCell>
-                                    <TableCell>City</TableCell>
-                                    <TableCell>State</TableCell>
-                                    <TableCell>Country</TableCell>
-                                    <TableCell>Gender</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {responseData.map((row, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell>{row.Name}</TableCell>
-                                        <TableCell>{row.PhoneNumber}</TableCell>
-                                        <TableCell>{row.DOB}</TableCell>
-                                        <TableCell>{row.Address}</TableCell>
-                                        <TableCell>{row.City}</TableCell>
-                                        <TableCell>{row.State}</TableCell>
-
-                                        <TableCell>{row.Country}</TableCell>
-                                        <TableCell>{row.Gender}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    <TableContainer component={Paper}>
-                        <Table aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Communication Notes</TableCell>
-                                    <TableCell>NoteType</TableCell>
-                                    <TableCell>Admission Date</TableCell>
-                                    <TableCell>Admission Type</TableCell>
-                                    <TableCell>Diagnosis Type Code</TableCell>
-                                    <TableCell>Patient Status</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {responseData.map((row, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell>{row.Notes}</TableCell>
-                                        <TableCell>{row.NoteType = "ALG " ? "Allergies" :
-                                            row.NoteType = "DCP " ? "Goals, Rehabilitation Potential, or Discharge Plans" :
-                                                row.NoteType = "DGN " ? "Diagnosis Description" :
-                                                    row.NoteType = "DME " ? "Durable Medical Equipment (DME) and Supplies" :
-                                                        row.NoteType = "MED " ? "Medications" :
-                                                            row.NoteType = "NTR " ? "Nutritional Requirements" :
-                                                                row.NoteType = "ODT " ? "Orders for Disciplines and Treatments" :
-                                                                    row.NoteType = "RHB " ? "Functional Limitations, Reason Homebound, or Both" :
-                                                                        row.NoteType = "RLH " ? "Reasons Patient Leaves Home" :
-                                                                            row.NoteType = "RNH " ? "Times and Reasons Patient Not at Home" :
-                                                                                row.NoteType = "SET " ? "Unusual Home, Social Environment, or Both" :
-                                                                                    row.NoteType = "SFM " ? "Safety Measures" :
-                                                                                        row.NoteType = "SPT " ? "Supplementary Plan of Treatment" :
-                                                                                            "Updated Information"}</TableCell>
-                                        <TableCell>{row.AdmissionDate}</TableCell>
-                                        <TableCell>{row.AdmissionTypecode = "1" ? "Emergency" : row.AdmissionTypecode = "2" ? "Urgent" : row.AdmissionTypecode = "3" ? "Elective" : "New born"}</TableCell>
-                                        <TableCell>{row.AdmittingDiagnosisTypeCode = "BJ" ? "Admitting" : "Unscheduled Outpatient Visit"}</TableCell>
-                                        <TableCell>{
-                                            row.PatientStatusCode = "01" ?
-                                                "Discharged - Home or Self Care" :
-                                                row.PatientStatusCode = "02" ?
-                                                    "Discharge/Transfer - Hospital " :
-                                                    row.PatientStatusCode = "03" ?
-                                                        "Discharge/Transfer - SNF " :
-                                                        row.PatientStatusCode = "04" ?
-                                                            "Discharge/Transfer - ICF " :
-                                                            row.PatientStatusCode = "05" ?
-                                                                "Discharge/Transfer - Institute" :
-                                                                row.PatientStatusCode = "06" ?
-                                                                    "Discharge/Transfer - HH Org" :
-                                                                    row.PatientStatusCode = "07" ?
-                                                                        "Left/Discontinued - Care" :
-                                                                        row.PatientStatusCode = "08" ?
-                                                                            "Discharge/Transfer - Home IV" :
-                                                                            row.PatientStatusCode = "09" ?
-                                                                                "Admitted as Inpatient" :
-                                                                                row.PatientStatusCode = "20" ?
-                                                                                    "Expired" :
-                                                                                    row.PatientStatusCode = "30" ?
-                                                                                        "Still Patient" :
-                                                                                        row.PatientStatusCode = "40" ?
-                                                                                            "Expired at Home" :
-                                                                                            row.PatientStatusCode = "41" ?
-                                                                                                "Expired in Medical Facility" :
-                                                                                                row.PatientStatusCode = "42" ?
-                                                                                                    "Expired - Place Unknown" :
-                                                                                                    row.PatientStatusCode = "50" ?
-                                                                                                        "Hospice - Home" :
-                                                                                                        row.PatientStatusCode = " 51" ?
-                                                                                                            "Hospice - Medical Facility" :
-                                                                                                            row.PatientStatusCode = "61" ?
-                                                                                                                "Discharge/Transfer - Swing Bed" :
-                                                                                                                row.PatientStatusCode = "62" ?
-                                                                                                                    "Discharge/Transfer - To Rehab" :
-                                                                                                                    row.PatientStatusCode = "63" ?
-                                                                                                                        "Discharge/Transfer - Term Care" :
-                                                                                                                        row.PatientStatusCode = "71" ?
-                                                                                                                            "Discharge/Transfer - Other Ins" :
-                                                                                                                            "Discharge/Transfer - This Ins"}</TableCell>
-
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                    <Paper elevation={3} style={{ padding: 20 }}>
+                        <Typography variant="h5" gutterBottom>
+                            Patient Information
+                        </Typography>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1"><strong>Patient Name:</strong> {responseData[0].Name}</Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1"><strong>Date of Birth:</strong> {responseData[0].DOB}</Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1"><strong>Gender:</strong> {responseData[0].Gender == "M" ? "Male" : "Female"}</Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1"><strong>Notes:</strong> {responseData[0].Notes}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography variant="body1"><strong>Admission Type:</strong> {responseData[0].AdmissionTypecode == "1" ? "Emergency" : responseData[0].AdmissionTypecode == "2" ? "Urgent" : responseData[0].AdmissionTypecode == "3" ? "Elective" : "New born"}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography variant="body1"><strong>Diagnosis Type:</strong> {responseData[0].AdmittingDiagnosisTypeCode == "BJ" ? "Admitting" : "Unscheduled Outpatient Visit"}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography variant="body1"><strong>Note Type:</strong> {responseData[0].NoteType == "ALG" ? "Allergies" :
+                                    responseData[0].NoteType == "DCP" ? "Goals, Rehabilitation Potential, or Discharge Plans" :
+                                        responseData[0].NoteType == "DGN" ? "Diagnosis Description" :
+                                            responseData[0].NoteType == "DME" ? "Durable Medical Equipment (DME) and Supplies" :
+                                                responseData[0].NoteType == "MED" ? "Medications" :
+                                                    responseData[0].NoteType == "NTR" ? "Nutritional Requirements" :
+                                                        responseData[0].NoteType == "ODT" ? "Orders for Disciplines and Treatments" :
+                                                            responseData[0].NoteType == "RHB" ? "Functional Limitations, Reason Homebound, or Both" :
+                                                                responseData[0].NoteType == "RLH" ? "Reasons Patient Leaves Home" :
+                                                                    responseData[0].NoteType == "RNH" ? "Times and Reasons Patient Not at Home" :
+                                                                        responseData[0].NoteType == "SET" ? "Unusual Home, Social Environment, or Both" :
+                                                                            responseData[0].NoteType == "SFM" ? "Safety Measures" :
+                                                                                responseData[0].NoteType == "SPT" ? "Supplementary Plan of Treatment" :
+                                                                                    "Updated Information"}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography variant="body1"><strong>Patient Status:</strong> {responseData[0].PatientStatusCode == "01" ?
+                                    "Discharged - Home or Self Care" :
+                                    responseData[0].PatientStatusCode == "02" ?
+                                        "Discharge/Transfer - Hospital " :
+                                        responseData[0].PatientStatusCode == "03" ?
+                                            "Discharge/Transfer - SNF " :
+                                            responseData[0].PatientStatusCode == "04" ?
+                                                "Discharge/Transfer - ICF " :
+                                                responseData[0].PatientStatusCode == "05" ?
+                                                    "Discharge/Transfer - Institute" :
+                                                    responseData[0].PatientStatusCode == "06" ?
+                                                        "Discharge/Transfer - HH Org" :
+                                                        responseData[0].PatientStatusCode == "07" ?
+                                                            "Left/Discontinued - Care" :
+                                                            responseData[0].PatientStatusCode == "08" ?
+                                                                "Discharge/Transfer - Home IV" :
+                                                                responseData[0].PatientStatusCode == "09" ?
+                                                                    "Admitted as Inpatient" :
+                                                                    responseData[0].PatientStatusCode == "20" ?
+                                                                        "Expired" :
+                                                                        responseData[0].PatientStatusCode == "30" ?
+                                                                            "Still Patient" :
+                                                                            responseData[0].PatientStatusCode == "40" ?
+                                                                                "Expired at Home" :
+                                                                                responseData[0].PatientStatusCode == "41" ?
+                                                                                    "Expired in Medical Facility" :
+                                                                                    responseData[0].PatientStatusCode == "42" ?
+                                                                                        "Expired - Place Unknown" :
+                                                                                        responseData[0].PatientStatusCode == "50" ?
+                                                                                            "Hospice - Home" :
+                                                                                            responseData[0].PatientStatusCode == " 51" ?
+                                                                                                "Hospice - Medical Facility" :
+                                                                                                responseData[0].PatientStatusCode == "61" ?
+                                                                                                    "Discharge/Transfer - Swing Bed" :
+                                                                                                    responseData[0].PatientStatusCode == "62" ?
+                                                                                                        "Discharge/Transfer - To Rehab" :
+                                                                                                        responseData[0].PatientStatusCode == "63" ?
+                                                                                                            "Discharge/Transfer - Term Care" :
+                                                                                                            responseData[0].PatientStatusCode == "71" ?
+                                                                                                                "Discharge/Transfer - Other Ins" :
+                                                                                                                "Discharge/Transfer - This Ins"}</Typography>
+                            </Grid>
+                        </Grid>
+                    </Paper>
                 </div>
             )}
         </Container>

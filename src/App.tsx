@@ -4,8 +4,6 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Search from './components/search';
-import Upload from './components/upload';
 import PatientForm from './components/patientForm';
 
 
