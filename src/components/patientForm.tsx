@@ -37,6 +37,7 @@ const DataFetchingComponent: React.FC = () => {
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
         event.preventDefault();
         setLoading(true);
 
