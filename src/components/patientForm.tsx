@@ -42,7 +42,7 @@ const DataFetchingComponent: React.FC = () => {
         setLoading(true);
 
         try {
-            const response = await axios.get<MyData[]>('/api/dataFromMSSQL', {
+            const response = await axios.get<MyData[]>('https://amd-backend.dataterrain-demo.net/api/dataFromMSSQL/', {
                 params: {
                     name: formData.name,
                     phone: formData.phone,
